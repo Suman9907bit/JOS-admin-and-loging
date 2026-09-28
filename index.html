@@ -1,1642 +1,2280 @@
-<!DOCTYPE html>  <html lang="bn">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>জানা Online Service</title>  <style>  
-*{  
-  box-sizing:border-box;  
-  margin:0;  
-  padding:0;  
-}  
-  
-:root{  
-  --primary:#075985;  
-  --primary2:#0ea5e9;  
-  --dark:#082f49;  
-  --success:#16a34a;  
-  --danger:#dc2626;  
-  --warning:#d97706;  
-  --light:#f0f9ff;  
-  --white:#fff;  
-  --border:#dbeafe;  
-  --shadow:0 12px 35px rgba(2,48,71,.15);  
-}  
-  
-body{  
-  font-family:Arial,"Noto Sans Bengali",sans-serif;  
-  background:#f1f5f9;  
-  color:#172033;  
-  min-height:100vh;  
-}  
-  
-button,input,select,textarea{  
-  font:inherit;  
-}  
-  
-button{  
-  cursor:pointer;  
-}  
-  
-.hidden{  
-  display:none!important;  
-}  
-  
-/* ================= LANDING ================= */  
-  
-#landing{  
-  min-height:100vh;  
-  display:grid;  
-  grid-template-columns:1.15fr .85fr;  
-  background:  
-    linear-gradient(90deg,rgba(2,30,50,.78),rgba(2,30,50,.35)),  
-    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=85")  
-    center/cover fixed;  
-}  
-  
-.hero{  
-  color:white;  
-  padding:60px;  
-  display:flex;  
-  align-items:center;  
-}  
-  
-.hero-content{  
-  max-width:650px;  
-}  
-  
-.logo-title{  
-  font-size:48px;  
-  font-weight:900;  
-  margin-bottom:15px;  
-  line-height:1.1;  
-}  
-  
-.logo-title span{  
-  color:#38bdf8;  
-}  
-  
-.hero-subtitle{  
-  font-size:22px;  
-  margin-bottom:25px;  
-  line-height:1.6;  
-}  
-  
-.hero-info{  
-  display:grid;  
-  grid-template-columns:repeat(2,1fr);  
-  gap:15px;  
-  margin-top:30px;  
-}  
-  
-.info-box{  
-  background:rgba(255,255,255,.13);  
-  border:1px solid rgba(255,255,255,.2);  
-  backdrop-filter:blur(8px);  
-  padding:18px;  
-  border-radius:15px;  
-}  
-  
-.info-box strong{  
-  display:block;  
-  font-size:18px;  
-  margin-bottom:7px;  
-}  
-  
-.info-box span{  
-  font-size:14px;  
-  opacity:.9;  
-}  
-  
-/* ================= AUTH ================= */  
-  
-.auth-side{  
-  background:rgba(255,255,255,.96);  
-  padding:30px;  
-  display:flex;  
-  align-items:center;  
-  justify-content:center;  
-}  
-  
-.auth-wrap{  
-  width:100%;  
-  max-width:470px;  
-}  
-  
-.auth-card{  
-  background:#fff;  
-  border-radius:24px;  
-  box-shadow:var(--shadow);  
-  padding:30px;  
-}  
-  
-.auth-title{  
-  color:var(--dark);  
-  font-size:30px;  
-  font-weight:800;  
-  margin-bottom:7px;  
-}  
-  
-.auth-desc{  
-  color:#64748b;  
-  margin-bottom:25px;  
-  line-height:1.5;  
-}  
-  
-.form-group{  
-  margin-bottom:15px;  
-}  
-  
-.form-group label{  
-  display:block;  
-  margin-bottom:7px;  
-  font-weight:700;  
-  font-size:14px;  
-  color:#334155;  
-}  
-  
-.form-control{  
-  width:100%;  
-  padding:13px 14px;  
-  border:1px solid #cbd5e1;  
-  border-radius:11px;  
-  outline:none;  
-  transition:.2s;  
-  background:#fff;  
-}  
-  
-.form-control:focus{  
-  border-color:var(--primary2);  
-  box-shadow:0 0 0 3px rgba(14,165,233,.12);  
-}  
-  
-.btn{  
-  border:0;  
-  border-radius:11px;  
-  padding:12px 17px;  
-  font-weight:700;  
-  transition:.2s;  
-}  
-  
-.btn:hover{  
-  transform:translateY(-1px);  
-}  
-  
-.btn-primary{  
-  color:#fff;  
-  background:linear-gradient(135deg,var(--primary),var(--primary2));  
-}  
-  
-.btn-success{  
-  background:var(--success);  
-  color:#fff;  
-}  
-  
-.btn-danger{  
-  background:var(--danger);  
-  color:#fff;  
-}  
-  
-.btn-warning{  
-  background:var(--warning);  
-  color:#fff;  
-}  
-  
-.btn-light{  
-  background:#e0f2fe;  
-  color:#075985;  
-}  
-  
-.btn-dark{  
-  background:#0f172a;  
-  color:#fff;  
-}  
-  
-.btn-block{  
-  width:100%;  
-}  
-  
-.login-btn{  
-  margin-top:8px;  
-  padding:14px;  
-}  
-  
-.registration-open{  
-  margin-top:18px;  
-  background:#f0f9ff;  
-  border:1px dashed #38bdf8;  
-  border-radius:15px;  
-  padding:18px;  
-  text-align:center;  
-}  
-  
-.registration-open p{  
-  color:#64748b;  
-  font-size:14px;  
-  margin-bottom:10px;  
-}  
-  
-/* ================= REGISTRATION ================= */  
-  
-.register-card{  
-  display:none;  
-  background:#fff;  
-  border-radius:24px;  
-  box-shadow:var(--shadow);  
-  padding:28px;  
-  max-height:92vh;  
-  overflow:auto;  
-}  
-  
-.register-card.active{  
-  display:block;  
-}  
-  
-.register-title{  
-  font-size:27px;  
-  font-weight:800;  
-  color:var(--dark);  
-  margin-bottom:6px;  
-}  
-  
-.register-desc{  
-  color:#64748b;  
-  margin-bottom:20px;  
-}  
-  
-.form-grid{  
-  display:grid;  
-  grid-template-columns:1fr 1fr;  
-  gap:13px;  
-}  
-  
-.full{  
-  grid-column:1/-1;  
-}  
-  
-.form-actions{  
-  display:flex;  
-  gap:10px;  
-  margin-top:15px;  
-}  
-  
-.form-actions button{  
-  flex:1;  
-}  
-  
-/* ================= DASHBOARD ================= */  
-  
-.dashboard{  
-  min-height:100vh;  
-  background:#f8fafc;  
-}  
-  
-.topbar{  
-  height:70px;  
-  background:#fff;  
-  border-bottom:1px solid #e2e8f0;  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  padding:0 25px;  
-  position:sticky;  
-  top:0;  
-  z-index:20;  
-}  
-  
-.brand{  
-  font-size:24px;  
-  font-weight:900;  
-  color:var(--dark);  
-}  
-  
-.brand span{  
-  color:#0284c7;  
-}  
-  
-.top-actions{  
-  display:flex;  
-  gap:10px;  
-  align-items:center;  
-}  
-  
-.profile-btn{  
-  width:43px;  
-  height:43px;  
-  border-radius:50%;  
-  border:0;  
-  background:#e0f2fe;  
-  font-size:21px;  
-}  
-  
-.user-banner{  
-  min-height:280px;  
-  padding:45px 30px;  
-  color:#fff;  
-  display:flex;  
-  align-items:center;  
-  background:  
-    linear-gradient(90deg,rgba(2,47,75,.85),rgba(2,47,75,.45)),  
-    url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85")  
-    center/cover;  
-}  
-  
-.banner-inner{  
-  max-width:1100px;  
-  width:100%;  
-  margin:auto;  
-}  
-  
-.banner-inner h1{  
-  font-size:38px;  
-  margin-bottom:10px;  
-}  
-  
-.banner-inner p{  
-  font-size:17px;  
-  opacity:.95;  
-}  
-  
-.dashboard-container{  
-  max-width:1200px;  
-  margin:auto;  
-  padding:30px 20px 60px;  
-}  
-  
-.section-title{  
-  font-size:25px;  
-  color:#0f172a;  
-  margin-bottom:18px;  
-}  
-  
-.service-grid{  
-  display:grid;  
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));  
-  gap:18px;  
-}  
-  
-.service-card{  
-  background:#fff;  
-  border:1px solid #e2e8f0;  
-  border-radius:18px;  
-  padding:23px;  
-  box-shadow:0 5px 18px rgba(15,23,42,.06);  
-  transition:.2s;  
-}  
-  
-.service-card:hover{  
-  transform:translateY(-4px);  
-  box-shadow:0 12px 30px rgba(15,23,42,.12);  
-}  
-  
-.service-icon{  
-  width:58px;  
-  height:58px;  
-  display:flex;  
-  align-items:center;  
-  justify-content:center;  
-  background:#e0f2fe;  
-  border-radius:15px;  
-  font-size:28px;  
-  margin-bottom:15px;  
-}  
-  
-.service-card h3{  
-  margin-bottom:8px;  
-  color:#0f172a;  
-}  
-  
-.service-card p{  
-  color:#64748b;  
-  line-height:1.5;  
-  min-height:48px;  
-  margin-bottom:16px;  
-}  
-  
-.empty-box{  
-  background:#fff;  
-  padding:30px;  
-  border-radius:16px;  
-  text-align:center;  
-  color:#64748b;  
-  border:1px dashed #cbd5e1;  
-}  
-  
-/* ================= ADMIN ================= */  
-  
-.admin-page{  
-  min-height:100vh;  
-  background:#f8fafc;  
-}  
-  
-.admin-container{  
-  max-width:1400px;  
-  margin:auto;  
-  padding:25px;  
-}  
-  
-.admin-header{  
-  display:flex;  
-  justify-content:space-between;  
-  align-items:center;  
-  margin-bottom:25px;  
-  gap:15px;  
-  flex-wrap:wrap;  
-}  
-  
-.admin-header h1{  
-  color:#0f172a;  
-}  
-  
-.stats{  
-  display:grid;  
-  grid-template-columns:repeat(4,1fr);  
-  gap:15px;  
-  margin-bottom:25px;  
-}  
-  
-.stat-card{  
-  background:#fff;  
-  border-radius:17px;  
-  padding:20px;  
-  border:1px solid #e2e8f0;  
-  box-shadow:0 4px 15px rgba(15,23,42,.05);  
-}  
-  
-.stat-card small{  
-  color:#64748b;  
-  display:block;  
-  margin-bottom:8px;  
-}  
-  
-.stat-card strong{  
-  font-size:30px;  
-  color:#0f172a;  
-}  
-  
-.admin-section{  
-  background:#fff;  
-  border-radius:18px;  
-  padding:22px;  
-  margin-bottom:22px;  
-  border:1px solid #e2e8f0;  
-}  
-  
-.section-head{  
-  display:flex;  
-  justify-content:space-between;  
-  align-items:center;  
-  gap:10px;  
-  margin-bottom:18px;  
-  flex-wrap:wrap;  
-}  
-  
-.table-wrap{  
-  overflow-x:auto;  
-}  
-  
-table{  
-  width:100%;  
-  border-collapse:collapse;  
-  min-width:900px;  
-}  
-  
-th,td{  
-  padding:12px;  
-  border-bottom:1px solid #e2e8f0;  
-  text-align:left;  
-  font-size:14px;  
-}  
-  
-th{  
-  background:#f8fafc;  
-  color:#334155;  
-}  
-  
-.status{  
-  display:inline-block;  
-  padding:5px 9px;  
-  border-radius:20px;  
-  font-size:12px;  
-  font-weight:800;  
-}  
-  
-.status.active{  
-  color:#166534;  
-  background:#dcfce7;  
-}  
-  
-.status.inactive{  
-  color:#991b1b;  
-  background:#fee2e2;  
-}  
-  
-.action-buttons{  
-  display:flex;  
-  gap:5px;  
-  flex-wrap:wrap;  
-}  
-  
-.action-buttons .btn{  
-  padding:7px 10px;  
-  font-size:12px;  
-}  
-  
-.service-admin-grid{  
-  display:grid;  
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));  
-  gap:15px;  
-}  
-  
-.admin-service{  
-  background:#f8fafc;  
-  border:1px solid #e2e8f0;  
-  padding:17px;  
-  border-radius:15px;  
-}  
-  
-.admin-service-icon{  
-  font-size:30px;  
-  margin-bottom:8px;  
-}  
-  
-.admin-service h3{  
-  margin-bottom:5px;  
-}  
-  
-.admin-service p{  
-  color:#64748b;  
-  font-size:14px;  
-  margin-bottom:10px;  
-}  
-  
-/* ================= MODAL ================= */  
-  
-.modal{  
-  position:fixed;  
-  inset:0;  
-  background:rgba(15,23,42,.62);  
-  display:none;  
-  align-items:center;  
-  justify-content:center;  
-  z-index:100;  
-  padding:15px;  
-}  
-  
-.modal.active{  
-  display:flex;  
-}  
-  
-.modal-box{  
-  background:#fff;  
-  width:100%;  
-  max-width:650px;  
-  max-height:90vh;  
-  overflow:auto;  
-  border-radius:20px;  
-  box-shadow:0 25px 70px rgba(0,0,0,.25);  
-}  
-  
-.modal-head{  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  padding:20px;  
-  border-bottom:1px solid #e2e8f0;  
-}  
-  
-.modal-head h2{  
-  color:#0f172a;  
-}  
-  
-.close-btn{  
-  border:0;  
-  background:#fee2e2;  
-  color:#991b1b;  
-  width:35px;  
-  height:35px;  
-  border-radius:50%;  
-  font-size:21px;  
-}  
-  
-.modal-body{  
-  padding:20px;  
-}  
-  
-.profile-grid{  
-  display:grid;  
-  grid-template-columns:1fr 1fr;  
-  gap:12px;  
-}  
-  
-.profile-item{  
-  background:#f8fafc;  
-  border-radius:10px;  
-  padding:12px;  
-}  
-  
-.profile-item small{  
-  color:#64748b;  
-  display:block;  
-  margin-bottom:4px;  
-}  
-  
-.profile-item strong{  
-  word-break:break-word;  
-}  
-  
-.success-box{  
-  text-align:center;  
-  padding:15px 20px 25px;  
-}  
-  
-.success-icon{  
-  width:75px;  
-  height:75px;  
-  margin:0 auto 15px;  
-  border-radius:50%;  
-  background:#dcfce7;  
-  color:#16a34a;  
-  display:flex;  
-  align-items:center;  
-  justify-content:center;  
-  font-size:40px;  
-}  
-  
-.credential-box{  
-  background:#f8fafc;  
-  border:1px solid #e2e8f0;  
-  padding:15px;  
-  border-radius:12px;  
-  text-align:left;  
-  margin-top:15px;  
-}  
-  
-.credential-row{  
-  display:flex;  
-  justify-content:space-between;  
-  gap:15px;  
-  padding:9px 0;  
-  border-bottom:1px solid #e2e8f0;  
-}  
-  
-.credential-row:last-child{  
-  border-bottom:0;  
-}  
-  
-.credential-row strong{  
-  color:#075985;  
-  word-break:break-all;  
-}  
-  
-.modal-footer{  
-  padding:0 20px 20px;  
-  display:flex;  
-  gap:10px;  
-}  
-  
-.modal-footer .btn{  
-  flex:1;  
-}  
-  
-/* ================= IFRAME ================= */  
-  
-.viewer{  
-  position:fixed;  
-  inset:0;  
-  background:#000;  
-  z-index:1000;  
-  display:none;  
-  flex-direction:column;  
-}  
-  
-.viewer.active{  
-  display:flex;  
-}  
-  
-.viewer-bar{  
-  height:55px;  
-  background:#0f172a;  
-  color:#fff;  
-  display:flex;  
-  align-items:center;  
-  justify-content:space-between;  
-  padding:0 15px;  
-}  
-  
-.viewer-title{  
-  font-weight:700;  
-}  
-  
-.viewer-close{  
-  border:0;  
-  background:#dc2626;  
-  color:#fff;  
-  width:40px;  
-  height:40px;  
-  border-radius:8px;  
-  font-size:25px;  
-}  
-  
-#serviceFrame{  
-  flex:1;  
-  width:100%;  
-  border:0;  
-  background:#fff;  
-}  
-  
-/* ================= TOAST ================= */  
-  
-.toast{  
-  position:fixed;  
-  right:20px;  
-  bottom:20px;  
-  min-width:280px;  
-  max-width:420px;  
-  background:#0f172a;  
-  color:#fff;  
-  padding:14px 17px;  
-  border-radius:12px;  
-  box-shadow:0 10px 35px rgba(0,0,0,.25);  
-  transform:translateY(120px);  
-  opacity:0;  
-  pointer-events:none;  
-  transition:.3s;  
-  z-index:2000;  
-}  
-  
-.toast.show{  
-  transform:translateY(0);  
-  opacity:1;  
-}  
-  
-.toast.success{  
-  background:#166534;  
-}  
-  
-.toast.error{  
-  background:#991b1b;  
-}  
-  
-/* ================= LOADER ================= */  
-  
-.loader{  
-  position:fixed;  
-  inset:0;  
-  background:rgba(255,255,255,.75);  
-  backdrop-filter:blur(3px);  
-  z-index:3000;  
-  display:none;  
-  align-items:center;  
-  justify-content:center;  
-}  
-  
-.loader.active{  
-  display:flex;  
-}  
-  
-.loader-box{  
-  background:#fff;  
-  padding:25px 35px;  
-  border-radius:15px;  
-  box-shadow:var(--shadow);  
-  text-align:center;  
-}  
-  
-.spinner{  
-  width:40px;  
-  height:40px;  
-  border:4px solid #dbeafe;  
-  border-top-color:#0284c7;  
-  border-radius:50%;  
-  animation:spin .8s linear infinite;  
-  margin:0 auto 12px;  
-}  
-  
-@keyframes spin{  
-  to{transform:rotate(360deg)}  
-}  
-  
-/* ================= RESPONSIVE ================= */  
-  
-@media(max-width:900px){  
-  #landing{  
-    grid-template-columns:1fr;  
-  }  
-  
-  .hero{  
-    padding:35px 25px;  
-    min-height:45vh;  
-  }  
-  
-  .logo-title{  
-    font-size:38px;  
-  }  
-  
-  .auth-side{  
-    padding:20px;  
-  }  
-  
-  .stats{  
-    grid-template-columns:1fr 1fr;  
-  }  
-}  
-  
-@media(max-width:600px){  
-  .hero-info{  
-    grid-template-columns:1fr;  
-  }  
-  
-  .hero-subtitle{  
-    font-size:17px;  
-  }  
-  
-  .logo-title{  
-    font-size:32px;  
-  }  
-  
-  .form-grid{  
-    grid-template-columns:1fr;  
-  }  
-  
-  .full{  
-    grid-column:auto;  
-  }  
-  
-  .form-actions{  
-    flex-direction:column;  
-  }  
-  
-  .profile-grid{  
-    grid-template-columns:1fr;  
-  }  
-  
-  .stats{  
-    grid-template-columns:1fr 1fr;  
-  }  
-  
-  .topbar{  
-    padding:0 12px;  
-  }  
-  
-  .brand{  
-    font-size:19px;  
-  }  
-  
-  .user-banner{  
-    padding:35px 20px;  
-  }  
-  
-  .banner-inner h1{  
-    font-size:28px;  
-  }  
-  
-  .admin-container{  
-    padding:15px;  
-  }  
-}  
-</style>  </head>  <body>  <!-- ================= LANDING ================= -->  <section id="landing">    <div class="hero">  
-    <div class="hero-content">  <div class="logo-title">  
-    জানা <span>Online Service</span>  
-  </div>  
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jana Online Service</title>
 
-  <div class="hero-subtitle">  
-    এক জায়গা থেকে আপনার প্রয়োজনীয় Online Service পরিচালনা করুন।  
-  </div>  
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-  <div class="hero-info">  
+:root{
+  --primary:#075985;
+  --primary2:#0ea5e9;
+  --dark:#082f49;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --warning:#d97706;
+  --light:#f0f9ff;
+  --white:#fff;
+  --border:#dbeafe;
+  --shadow:0 12px 35px rgba(2,48,71,.15);
+}
 
-    <div class="info-box">  
-      <strong>🔐 Secure Account</strong>  
-      <span>আপনার নিজের User ID ও Password দিয়ে প্রবেশ করুন।</span>  
-    </div>  
+body{
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  background:#f1f5f9;
+  color:#172033;
+  min-height:100vh;
+}
 
-    <div class="info-box">  
-      <strong>📋 Smart Service</strong>  
-      <span>Admin প্রয়োজন অনুযায়ী আলাদা আলাদা Service assign করতে পারবেন।</span>  
-    </div>  
+button,input,select,textarea{
+  font:inherit;
+}
 
-    <div class="info-box">  
-      <strong>👤 User Profile</strong>  
-      <span>Registration-এর সম্পূর্ণ তথ্য Profile-এ থাকবে।</span>  
-    </div>  
+button{
+  cursor:pointer;
+}
 
-    <div class="info-box">  
-      <strong>⚙️ Admin Control</strong>  
-      <span>User activation ও Service management সম্পূর্ণ Admin-এর হাতে।</span>  
-    </div>  
+.hidden{
+  display:none!important;
+}
 
-  </div>  
+/* ================= LANDING ================= */
+
+#landing{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  background:
+    linear-gradient(90deg,rgba(2,30,50,.78),rgba(2,30,50,.35)),
+    url("https://mir-s3-cdn-cf.behance.net/project_modules/source/879df8105642271.5f7db84be8463.gif")
+    center/cover fixed;
+}
+
+.hero{
+  color:white;
+  padding:60px;
+  display:flex;
+  align-items:center;
+}
+
+.hero-content{
+  max-width:650px;
+}
+
+.logo-title{
+  font-size:48px;
+  font-weight:900;
+  margin-bottom:15px;
+  line-height:1.1;
+}
+
+.logo-title span{
+  color:#38bdf8;
+}
+
+.hero-subtitle{
+  font-size:22px;
+  margin-bottom:25px;
+  line-height:1.6;
+}
+
+.hero-info{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  margin-top:30px;
+}
+
+.info-box{
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(8px);
+  padding:18px;
+  border-radius:15px;
+}
+
+.info-box strong{
+  display:block;
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.info-box span{
+  font-size:14px;
+  opacity:.9;
+}
+
+/* ================= AUTH ================= */
+
+.auth-side{
+  background:rgba(255,255,255,.96);
+  padding:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.auth-wrap{
+  width:100%;
+  max-width:470px;
+}
+
+.auth-card{
+  background:#fff;
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:30px;
+}
+
+.auth-title{
+  color:var(--dark);
+  font-size:30px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.auth-desc{
+  color:#64748b;
+  margin-bottom:25px;
+  line-height:1.5;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:700;
+  font-size:14px;
+  color:#334155;
+}
+
+.form-control{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid #cbd5e1;
+  border-radius:11px;
+  outline:none;
+  transition:.2s;
+  background:#fff;
+}
+
+.form-control:focus{
+  border-color:var(--primary2);
+  box-shadow:0 0 0 3px rgba(14,165,233,.12);
+}
+
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:12px 17px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+}
+
+.btn-success{
+  background:var(--success);
+  color:#fff;
+}
+
+.btn-danger{
+  background:var(--danger);
+  color:#fff;
+}
+
+.btn-warning{
+  background:var(--warning);
+  color:#fff;
+}
+
+.btn-light{
+  background:#e0f2fe;
+  color:#075985;
+}
+
+.btn-dark{
+  background:#0f172a;
+  color:#fff;
+}
+
+.btn-block{
+  width:100%;
+}
+
+.login-btn{
+  margin-top:8px;
+  padding:14px;
+}
+
+.registration-open{
+  margin-top:18px;
+  background:#f0f9ff;
+  border:1px dashed #38bdf8;
+  border-radius:15px;
+  padding:18px;
+  text-align:center;
+}
+
+.registration-open p{
+  color:#64748b;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+/* ================= REGISTRATION ================= */
+
+.register-card{
+  display:none;
+  background:#fff;
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:28px;
+  max-height:92vh;
+  overflow:auto;
+}
+
+.register-card.active{
+  display:block;
+}
+
+.register-title{
+  font-size:27px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:6px;
+}
+
+.register-desc{
+  color:#64748b;
+  margin-bottom:20px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.form-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.form-actions button{
+  flex:1;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+  min-height:100vh;
+  background:#f8fafc;
+}
+
+.topbar{
+  height:70px;
+  background:teal;
+  border-bottom:1px solid #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.brand{
+  font-size:24px;
+  font-weight:900;
+  color:white;
+}
+
+.brand span{
+  color:yellow;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.profile-btn{
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  border:0;
+  background:#e0f2fe;
+  font-size:21px;
+}
+
+.user-banner{
+  min-height:280px;
+  padding:45px 30px;
+  color:white;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,rgba(2,47,75,.02),rgba(2,47,75,.02)),
+    url("https://lh3.googleusercontent.com/Pjb1Zzx0mfBsLIHOOdXf9ZdfErwrLh3yyDwsL5vB0IQM2bnLu8S2I8ewrfxNSQZiXGx-4CgkqIRpRnI8dg=w1425")
+    center/cover;
+}
+
+.banner-inner{
+  max-width:1100px;
+  width:100%;
+  margin:auto;
+}
+
+.banner-inner h1{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.banner-inner p{
+  font-size:17px;
+  opacity:.95;
+}
+
+.dashboard-container{
+  max-width:1200px;
+  margin:auto;
+  padding:30px 20px 60px;
+}
+
+.section-title{
+  font-size:25px;
+  color:#0f172a;
+  margin-bottom:18px;
+}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+}
+
+.service-card{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  padding:23px;
+  box-shadow:0 5px 18px rgba(15,23,42,.06);
+  transition:.2s;
+}
+
+.service-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(15,23,42,.12);
+}
+
+.service-icon{
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#e0f2fe;
+  border-radius:15px;
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.service-card h3{
+  margin-bottom:8px;
+  color:#0f172a;
+}
+
+.service-card p{
+  color:#64748b;
+  line-height:1.5;
+  min-height:48px;
+  margin-bottom:16px;
+}
+
+.empty-box{
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+  color:#64748b;
+  border:1px dashed #cbd5e1;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-page{
+  min-height:100vh;
+  background:#f8fafc;
+}
+
+.admin-container{
+  max-width:1400px;
+  margin:auto;
+  padding:25px;
+}
+
+.admin-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.admin-header h1{
+  color:#0f172a;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  background:#fff;
+  border-radius:17px;
+  padding:20px;
+  border:1px solid #e2e8f0;
+  box-shadow:0 4px 15px rgba(15,23,42,.05);
+}
+
+.stat-card small{
+  color:#64748b;
+  display:block;
+  margin-bottom:8px;
+}
+
+.stat-card strong{
+  font-size:30px;
+  color:#0f172a;
+}
+
+.admin-section{
+  background:#fff;
+  border-radius:18px;
+  padding:22px;
+  margin-bottom:22px;
+  border:1px solid #e2e8f0;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;
+}
+
+th,td{
+  padding:12px;
+  border-bottom:1px solid #e2e8f0;
+  text-align:left;
+  font-size:14px;
+}
+
+th{
+  background:#f8fafc;
+  color:#334155;
+}
+
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.status.active{
+  color:#166534;
+  background:#dcfce7;
+}
+
+.status.inactive{
+  color:#991b1b;
+  background:#fee2e2;
+}
+
+.action-buttons{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.action-buttons .btn{
+  padding:7px 10px;
+  font-size:12px;
+}
+
+.service-admin-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:15px;
+}
+
+.admin-service{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  padding:17px;
+  border-radius:15px;
+}
+
+.admin-service-icon{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.admin-service h3{
+  margin-bottom:5px;
+}
+
+.admin-service p{
+  color:#64748b;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.62);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:15px;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-box{
+  background:#fff;
+  width:100%;
+  max-width:650px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:20px;
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.modal-head h2{
+  color:#0f172a;
+}
+
+.close-btn{
+  border:0;
+  background:#fee2e2;
+  color:#991b1b;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  font-size:21px;
+}
+
+.modal-body{
+  padding:20px;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.profile-item{
+  background:#f8fafc;
+  border-radius:10px;
+  padding:12px;
+}
+
+.profile-item small{
+  color:#64748b;
+  display:block;
+  margin-bottom:4px;
+}
+
+.profile-item strong{
+  word-break:break-word;
+}
+
+.success-box{
+  text-align:center;
+  padding:15px 20px 25px;
+}
+
+.success-icon{
+  width:75px;
+  height:75px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:#dcfce7;
+  color:#16a34a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+}
+
+.credential-box{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  padding:15px;
+  border-radius:12px;
+  text-align:left;
+  margin-top:15px;
+}
+
+.credential-row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:9px 0;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.credential-row:last-child{
+  border-bottom:0;
+}
+
+.credential-row strong{
+  color:#075985;
+  word-break:break-all;
+}
+
+.modal-footer{
+  padding:0 20px 20px;
+  display:flex;
+  gap:10px;
+}
+
+.modal-footer .btn{
+  flex:1;
+}
+
+/* ================= IFRAME ================= */
+
+.viewer{
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:1000;
+  display:none;
+  flex-direction:column;
+}
+
+.viewer.active{
+  display:flex;
+}
+
+.viewer-bar{
+  height:55px;
+  background:#0f172a;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+}
+
+.viewer-title{
+  font-weight:700;
+}
+
+.viewer-close{
+  border:0;
+  background:#dc2626;
+  color:#fff;
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  font-size:25px;
+}
+
+#serviceFrame{
+  flex:1;
+  width:100%;
+  border:0;
+  background:#fff;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  min-width:280px;
+  max-width:420px;
+  background:#0f172a;
+  color:#fff;
+  padding:14px 17px;
+  border-radius:12px;
+  box-shadow:0 10px 35px rgba(0,0,0,.25);
+  transform:translateY(120px);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:2000;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.toast.success{
+  background:#166534;
+}
+
+.toast.error{
+  background:#991b1b;
+}
+
+/* ================= LOADER ================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(3px);
+  z-index:3000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.loader.active{
+  display:flex;
+}
+
+.loader-box{
+  background:#fff;
+  padding:25px 35px;
+  border-radius:15px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+
+.spinner{
+  width:40px;
+  height:40px;
+  border:4px solid #dbeafe;
+  border-top-color:#0284c7;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:0 auto 12px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+  #landing{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding:35px 25px;
+    min-height:45vh;
+  }
+
+  .logo-title{
+    font-size:38px;
+  }
+
+  .auth-side{
+    padding:20px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:600px){
+  .hero-info{
+    grid-template-columns:1fr;
+  }
+
+  .hero-subtitle{
+    font-size:17px;
+  }
+
+  .logo-title{
+    font-size:32px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .form-actions{
+    flex-direction:column;
+  }
+
+  .profile-grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .topbar{
+    padding:0 12px;
+  }
+
+  .brand{
+    font-size:19px;
+  }
+
+  .user-banner{
+    padding:35px 20px;
+  }
+
+  .banner-inner h1{
+    font-size:28px;
+  }
+
+  .admin-container{
+    padding:15px;
+  }
+}
+
+
+
+/* =========================================
+   PROFESSIONAL NOTICE BAR
+========================================= */
+
+.notice-bar{
+    width:100%;
+    height:48px;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(90deg,#00695c,#00897b,#00695c);
+    color:#fff;
+    overflow:hidden;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+/* LEFT NOTICE LABEL */
+
+.notice-label{
+    height:100%;
+    min-width:120px;
+    padding:0 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+
+    background:#004d40;
+    font-weight:700;
+    font-size:14px;
+
+    position:relative;
+    z-index:5;
+    box-shadow:5px 0 10px rgba(0,0,0,.15);
+}
+
+.notice-icon{
+    font-size:17px;
+}
+
+/* SCROLL AREA */
+
+.notice-content{
+    flex:1;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+/* MOVING TEXT */
+
+.notice-track{
+    display:inline-flex;
+    align-items:center;
+    gap:55px;
+
+    padding-left:30px;
+
+    animation:noticeMove 28s linear infinite;
+}
+
+/* NOTICE ITEM */
+
+.notice-item{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:14px;
+    font-weight:500;
+}
+
+/* NEW BADGE */
+
+.notice-item b{
+    background:#ffca28;
+    color:#263238;
+
+    padding:3px 8px;
+    border-radius:12px;
+
+    font-size:10px;
+    font-weight:800;
+}
+
+/* ANIMATION */
+
+@keyframes noticeMove{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+
+}
+
+/* PAUSE ON HOVER */
+
+.notice-bar:hover .notice-track{
+    animation-play-state:paused;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+    .notice-bar{
+        height:44px;
+    }
+
+    .notice-label{
+        min-width:82px;
+        padding:0 10px;
+        font-size:11px;
+    }
+
+    .notice-icon{
+        font-size:14px;
+    }
+
+    .notice-item{
+        font-size:12px;
+    }
+
+    .notice-track{
+        gap:35px;
+        animation-duration:22s;
+    }
+
+}
+
+
+
+/* =========================================
+   WELCOME POPUP
+========================================= */
+
+.welcome-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.58);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:99999;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s ease;
+}
+
+.welcome-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+
+/* POPUP BOX */
+
+.welcome-popup{
+    width:100%;
+    max-width:470px;
+
+    background:#fff;
+    border-radius:24px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.30);
+
+    transform:translateY(30px) scale(.95);
+
+    transition:.4s ease;
+}
+
+.welcome-overlay.show .welcome-popup{
+    transform:translateY(0) scale(1);
+}
+
+
+/* TOP DESIGN */
+
+.welcome-popup::before{
+    content:"";
+    display:block;
+
+    height:7px;
+
+    background:linear-gradient(
+        90deg,
+        #00695c,
+        #00a896,
+        #26a69a,
+        #00695c
+    );
+}
+
+
+/* CLOSE BUTTON */
+
+.welcome-close{
+    position:absolute;
+
+    top:16px;
+    right:16px;
+
+    width:34px;
+    height:34px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#f1f5f5;
+    color:#455a64;
+
+    font-size:24px;
+    line-height:30px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.welcome-close:hover{
+    background:#00695c;
+    color:#fff;
+    transform:rotate(90deg);
+}
+
+
+/* ICON */
+
+.welcome-icon{
+    width:75px;
+    height:75px;
+
+    margin:32px auto 15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #e0f2f1,
+        #b2dfdb
+    );
+
+    font-size:38px;
+
+    box-shadow:
+        0 8px 20px rgba(0,105,92,.15);
+}
+
+
+/* CONTENT */
+
+.welcome-content{
+    padding:0 35px 32px;
+    text-align:center;
+}
+
+.welcome-small{
+    color:#00897b;
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    margin-bottom:6px;
+}
+
+.welcome-content h2{
+    margin:0 0 12px;
+
+    color:#263238;
+
+    font-size:27px;
+    font-weight:700;
+}
+
+.welcome-content h2 span{
+    color:#00897b;
+}
+
+
+/* DESCRIPTION */
+
+.welcome-content p{
+    margin:0 auto 20px;
+
+    color:#607d8b;
+
+    font-size:14px;
+    line-height:1.7;
+}
+
+
+/* ACCOUNT INFO */
+
+.welcome-info{
+    display:flex;
+    align-items:flex-start;
+
+    text-align:left;
+
+    gap:12px;
+
+    padding:14px;
+
+    margin-bottom:22px;
+
+    background:#f4faf9;
+
+    border:1px solid #d7eeeb;
+
+    border-radius:14px;
+}
+
+.welcome-info > span{
+    font-size:22px;
+}
+
+.welcome-info strong{
+    display:block;
+
+    color:#37474f;
+
+    font-size:13px;
+
+    margin-bottom:4px;
+}
+
+.welcome-info small{
+    display:block;
+
+    color:#78909c;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+
+/* BUTTON */
+
+.welcome-btn{
+    width:100%;
+
+    padding:13px 20px;
+
+    border:none;
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #00695c,
+        #00897b
+    );
+
+    color:#fff;
+
+    font-size:14px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 18px rgba(0,105,92,.25);
+
+    transition:.25s;
+}
+
+.welcome-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(0,105,92,.35);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:600px){
+
+    .welcome-popup{
+        max-width:380px;
+        border-radius:20px;
+    }
+
+    .welcome-icon{
+        width:65px;
+        height:65px;
+        font-size:32px;
+        margin-top:27px;
+    }
+
+    .welcome-content{
+        padding:0 22px 25px;
+    }
+
+    .welcome-content h2{
+        font-size:23px;
+    }
+
+    .welcome-content p{
+        font-size:13px;
+    }
+
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= LANDING ================= -->
+
+<section id="landing">
+
+  <div class="hero">
+    <div class="hero-content">
+
+      <div class="logo-title">
+        Jana <span>Online Service</span>
+      </div>
+
+      <div class="hero-subtitle">
+        এক জায়গা থেকে আপনার প্রয়োজনীয় Online Service পরিচালনা করুন।
+      </div>
+
+      <div class="hero-info">
+
+        <div class="info-box">
+          <strong>🔐 Secure Account</strong>
+          <span>আপনার নিজের User ID ও Password দিয়ে প্রবেশ করুন।</span>
+        </div>
+
+        
+
+        <div class="info-box">
+          <strong>👤 User Profile</strong>
+          <span>Registration-এর সম্পূর্ণ তথ্য Profile-এ থাকবে।</span>
+        </div>
+
+        
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="auth-side">
+
+    <div class="auth-wrap">
+
+      <!-- LOGIN -->
+
+      <div class="auth-card" id="loginCard">
+
+        <div class="auth-title">Welcome Back</div>
+
+        <div class="auth-desc">
+          আপনার Account Type নির্বাচন করে Login করুন।
+        </div>
+
+        <form id="loginForm">
+
+          <div class="form-group">
+            <label>Login Type</label>
+
+            <select id="loginType" class="form-control" required>
+              <option value="">Select Login Type</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>User ID / Admin ID</label>
+            <input
+              id="loginId"
+              class="form-control"
+              type="text"
+              placeholder="Enter ID"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              id="loginPassword"
+              class="form-control"
+              type="password"
+              placeholder="Enter Password"
+              required
+            >
+          </div>
+
+          <button class="btn btn-primary btn-block login-btn" type="submit">
+            🔐 Login
+          </button>
+
+        </form>
+
+        <div class="registration-open">
+
+          <p>আপনার Account নেই?</p>
+
+          <button
+            class="btn btn-light btn-block"
+            id="openRegistration"
+            type="button"
+          >
+            📝 Registration Now
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- REGISTRATION -->
+
+      <div class="register-card" id="registerCard">
+
+        <div class="register-title">
+          Create New Account
+        </div>
+
+        <div class="register-desc">
+          আপনার Office ও ব্যক্তিগত তথ্য দিন।
+        </div>
+
+        <form id="registerForm">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label>Name *</label>
+              <input id="regName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label>Designation *</label>
+              <input id="regDesignation" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label>Mobile *</label>
+              <input
+                id="regMobile"
+                class="form-control"
+                type="tel"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                id="regEmail"
+                class="form-control"
+                type="email"
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Office Name *</label>
+              <input id="regOfficeName" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label>Business / Office Type *</label>
+              <input id="regOfficeType" class="form-control" required>
+            </div>
+
+            <div class="form-group full">
+              <label>Office Address *</label>
+              <textarea
+                id="regOfficeAddress"
+                class="form-control"
+                rows="2"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>District *</label>
+              <input id="regDistrict" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label>State *</label>
+              <input id="regState" class="form-control" value="West Bengal" required>
+            </div>
+
+            <div class="form-group">
+              <label>Pincode *</label>
+              <input id="regPincode" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label>GST</label>
+              <input id="regGST" class="form-control">
+            </div>
+
+            <div class="form-group full">
+              <label>User ID</label>
+              <input
+                id="regUserId"
+                class="form-control"
+                placeholder="খালি রাখলে JANA ID তৈরি হবে"
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Password *</label>
+              <input
+                id="regPassword"
+                class="form-control"
+                type="password"
+                minlength="4"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label>Confirm Password *</label>
+              <input
+                id="regConfirmPassword"
+                class="form-control"
+                type="password"
+                minlength="4"
+                required
+              >
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+
+            <button
+              type="button"
+              class="btn btn-light"
+              id="backToLogin"
+            >
+              ← Back
+            </button>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+            >
+              Create Account
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= USER DASHBOARD ================= -->
+
+<section id="userDashboard" class="dashboard hidden">
+
+  <div class="topbar">
+
+    <div class="brand">
+      Jana <span>Online Service</span>
+    </div>
+
+    <div class="top-actions">
+
+      <button
+        class="btn btn-light"
+        id="statusCheckBtn"
+      >
+        🔄 Status
+      </button>
+
+      <button
+        class="profile-btn"
+        id="userProfileBtn"
+        title="Profile"
+      >
+        👤
+      </button>
+
+      <button
+        class="btn btn-danger"
+        id="userLogoutBtn"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="user-banner">
+
+    <div class="banner-inner">
+
+      <h1 id="welcomeUser">
+        Welcome
+      </h1>
+
+      <p id="welcomeOffice">
+        আপনার Dashboard
+      </p>
+
+    </div>
+
+  </div>
+
+
+<!-- ================= NOTICE BAR ================= -->
+<div class="notice-bar">
+
+    <div class="notice-label">
+        <span class="notice-icon">📢</span>
+        <span>NOTICE</span>
+    </div>
+
+    <div class="notice-content">
+        <div class="notice-track">
+
+            <span class="notice-item">
+                🔔 Welcome to Jana Online Service
+            </span>
+
+            <span class="notice-item new-notice">
+                🆕 নতুন অনলাইন সার্ভিস এখন উপলব্ধ
+                <b>NEW</b>
+            </span>
+
+            <span class="notice-item">
+                💻 All Digital Services Available Here
+            </span>
+
+            <span class="notice-item">
+                📞 For any help, contact us
+            </span>
+
+            <!-- Repeat for continuous scrolling -->
+            <span class="notice-item">
+                🔔 Welcome to Jana Online Service
+            </span>
+
+            <span class="notice-item new-notice">
+                🆕 নতুন অনলাইন সার্ভিস এখন উপলব্ধ
+                <b>NEW</b>
+            </span>
+
+            <span class="notice-item">
+                💻 All Digital Services Available Here
+            </span>
+
+        </div>
+    </div>
 
 </div>
 
-  </div>    <div class="auth-side">  <div class="auth-wrap">  
 
-  <!-- LOGIN -->  
 
-  <div class="auth-card" id="loginCard">  
 
-    <div class="auth-title">Welcome Back</div>  
 
-    <div class="auth-desc">  
-      আপনার Account Type নির্বাচন করে Login করুন।  
-    </div>  
 
-    <form id="loginForm">  
 
-      <div class="form-group">  
-        <label>Login Type</label>  
 
-        <select id="loginType" class="form-control" required>  
-          <option value="">Select Login Type</option>  
-          <option value="admin">Admin</option>  
-          <option value="user">User</option>  
-        </select>  
-      </div>  
+  <div class="dashboard-container">
 
-      <div class="form-group">  
-        <label>User ID / Admin ID</label>  
-        <input  
-          id="loginId"  
-          class="form-control"  
-          type="text"  
-          placeholder="Enter ID"  
-          required  
-        >  
-      </div>  
+    <h2 class="section-title">
+      আপনার Assigned Services
+    </h2>
 
-      <div class="form-group">  
-        <label>Password</label>  
-        <input  
-          id="loginPassword"  
-          class="form-control"  
-          type="password"  
-          placeholder="Enter Password"  
-          required  
-        >  
-      </div>  
+    <div id="userServices" class="service-grid"></div>
 
-      <button class="btn btn-primary btn-block login-btn" type="submit">  
-        🔐 Login  
-      </button>  
+  </div>
 
-    </form>  
+</section>
 
-    <div class="registration-open">  
 
-      <p>আপনার Account নেই?</p>  
+<!-- ================= ADMIN PANEL ================= -->
 
-      <button  
-        class="btn btn-light btn-block"  
-        id="openRegistration"  
-        type="button"  
-      >  
-        📝 Registration Now  
-      </button>  
+<section id="adminPage" class="admin-page hidden">
 
-    </div>  
+  <div class="topbar">
 
-  </div>  
+    <div class="brand">
+      জানা <span>Admin Panel</span>
+    </div>
 
-  <!-- REGISTRATION -->  
+    <div class="top-actions">
 
-  <div class="register-card" id="registerCard">  
+      <button
+        class="btn btn-light"
+        id="adminRefreshBtn"
+      >
+        🔄 Refresh
+      </button>
 
-    <div class="register-title">  
-      Create New Account  
-    </div>  
+      <button
+        class="btn btn-danger"
+        id="adminLogoutBtn"
+      >
+        Logout
+      </button>
 
-    <div class="register-desc">  
-      আপনার Office ও ব্যক্তিগত তথ্য দিন।  
-    </div>  
+    </div>
 
-    <form id="registerForm">  
+  </div>
 
-      <div class="form-grid">  
+  <div class="admin-container">
 
-        <div class="form-group">  
-          <label>Name *</label>  
-          <input id="regName" class="form-control" required>  
-        </div>  
+    <div class="admin-header">
 
-        <div class="form-group">  
-          <label>Designation *</label>  
-          <input id="regDesignation" class="form-control" required>  
-        </div>  
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p style="color:#64748b;margin-top:5px">
+          User ও Service সম্পূর্ণ Google Sheet থেকে Control করুন।
+        </p>
+      </div>
 
-        <div class="form-group">  
-          <label>Mobile *</label>  
-          <input  
-            id="regMobile"  
-            class="form-control"  
-            type="tel"  
-            required  
-          >  
-        </div>  
+    </div>
 
-        <div class="form-group">  
-          <label>Email</label>  
-          <input  
-            id="regEmail"  
-            class="form-control"  
-            type="email"  
-          >  
-        </div>  
+    <!-- STATS -->
 
-        <div class="form-group">  
-          <label>Office Name *</label>  
-          <input id="regOfficeName" class="form-control" required>  
-        </div>  
+    <div class="stats">
 
-        <div class="form-group">  
-          <label>Business / Office Type *</label>  
-          <input id="regOfficeType" class="form-control" required>  
-        </div>  
+      <div class="stat-card">
+        <small>Total Users</small>
+        <strong id="totalUsers">0</strong>
+      </div>
 
-        <div class="form-group full">  
-          <label>Office Address *</label>  
-          <textarea  
-            id="regOfficeAddress"  
-            class="form-control"  
-            rows="2"  
-            required  
-          ></textarea>  
-        </div>  
+      <div class="stat-card">
+        <small>Active Users</small>
+        <strong id="activeUsers">0</strong>
+      </div>
 
-        <div class="form-group">  
-          <label>District *</label>  
-          <input id="regDistrict" class="form-control" required>  
-        </div>  
+      <div class="stat-card">
+        <small>Inactive Users</small>
+        <strong id="inactiveUsers">0</strong>
+      </div>
 
-        <div class="form-group">  
-          <label>State *</label>  
-          <input id="regState" class="form-control" value="West Bengal" required>  
-        </div>  
+      <div class="stat-card">
+        <small>Total Services</small>
+        <strong id="totalServices">0</strong>
+      </div>
 
-        <div class="form-group">  
-          <label>Pincode *</label>  
-          <input id="regPincode" class="form-control" required>  
-        </div>  
+    </div>
 
-        <div class="form-group">  
-          <label>GST</label>  
-          <input id="regGST" class="form-control">  
-        </div>  
+    <!-- USERS -->
 
-        <div class="form-group full">  
-          <label>User ID</label>  
-          <input  
-            id="regUserId"  
-            class="form-control"  
-            placeholder="খালি রাখলে JANA ID তৈরি হবে"  
-          >  
-        </div>  
+    <div class="admin-section">
 
-        <div class="form-group">  
-          <label>Password *</label>  
-          <input  
-            id="regPassword"  
-            class="form-control"  
-            type="password"  
-            minlength="4"  
-            required  
-          >  
-        </div>  
+      <div class="section-head">
 
-        <div class="form-group">  
-          <label>Confirm Password *</label>  
-          <input  
-            id="regConfirmPassword"  
-            class="form-control"  
-            type="password"  
-            minlength="4"  
-            required  
-          >  
-        </div>  
+        <h2>User Management</h2>
 
-      </div>  
+      </div>
 
-      <div class="form-actions">  
+      <div class="table-wrap">
 
-        <button  
-          type="button"  
-          class="btn btn-light"  
-          id="backToLogin"  
-        >  
-          ← Back  
-        </button>  
+        <table>
 
-        <button  
-          type="submit"  
-          class="btn btn-primary"  
-        >  
-          Create Account  
-        </button>  
+          <thead>
 
-      </div>  
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Mobile</th>
+              <th>Office</th>
+              <th>District</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
 
-    </form>  
+          </thead>
 
-  </div>  
+          <tbody id="adminUsersBody"></tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+    <!-- SERVICES -->
+
+    <div class="admin-section">
+
+      <div class="section-head">
+
+        <h2>Service Management</h2>
+
+        <button
+          class="btn btn-primary"
+          id="addServiceBtn"
+        >
+          + Add Service
+        </button>
+
+      </div>
+
+      <div
+        id="adminServices"
+        class="service-admin-grid"
+      ></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PROFILE MODAL ================= -->
+
+<div class="modal" id="profileModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>User Profile</h2>
+
+      <button class="close-btn" data-close="profileModal">
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div
+        id="profileContent"
+        class="profile-grid"
+      ></div>
+
+    </div>
+
+  </div>
 
 </div>
 
-  </div>  </section>  <!-- ================= USER DASHBOARD ================= -->  <section id="userDashboard" class="dashboard hidden">    <div class="topbar">  <div class="brand">  
-  জানা <span>Online Service</span>  
-</div>  
 
-<div class="top-actions">  
+<!-- ================= USER DETAILS MODAL ================= -->
 
-  <button  
-    class="btn btn-light"  
-    id="statusCheckBtn"  
-  >  
-    🔄 Status  
-  </button>  
+<div class="modal" id="userDetailsModal">
 
-  <button  
-    class="profile-btn"  
-    id="userProfileBtn"  
-    title="Profile"  
-  >  
-    👤  
-  </button>  
+  <div class="modal-box">
 
-  <button  
-    class="btn btn-danger"  
-    id="userLogoutBtn"  
-  >  
-    Logout  
-  </button>  
+    <div class="modal-head">
 
-</div>
+      <h2>User Details</h2>
 
-  </div>    <div class="user-banner">  <div class="banner-inner">  
+      <button class="close-btn" data-close="userDetailsModal">
+        ×
+      </button>
 
-  <h1 id="welcomeUser">  
-    Welcome  
-  </h1>  
+    </div>
 
-  <p id="welcomeOffice">  
-    আপনার Dashboard  
-  </p>  
+    <div class="modal-body">
+
+      <div
+        id="adminProfileContent"
+        class="profile-grid"
+      ></div>
+
+    </div>
+
+  </div>
 
 </div>
 
-  </div>    <div class="dashboard-container">  <h2 class="section-title">  
-  আপনার Assigned Services  
-</h2>  
 
-<div id="userServices" class="service-grid"></div>
+<!-- ================= EDIT USER MODAL ================= -->
 
-  </div>  </section>  <!-- ================= ADMIN PANEL ================= -->  <section id="adminPage" class="admin-page hidden">    <div class="topbar">  <div class="brand">  
-  জানা <span>Admin Panel</span>  
-</div>  
+<div class="modal" id="editUserModal">
 
-<div class="top-actions">  
+  <div class="modal-box">
 
-  <button  
-    class="btn btn-light"  
-    id="adminRefreshBtn"  
-  >  
-    🔄 Refresh  
-  </button>  
+    <div class="modal-head">
 
-  <button  
-    class="btn btn-danger"  
-    id="adminLogoutBtn"  
-  >  
-    Logout  
-  </button>  
+      <h2>Edit User</h2>
 
-</div>
+      <button class="close-btn" data-close="editUserModal">
+        ×
+      </button>
 
-  </div>    <div class="admin-container">  <div class="admin-header">  
+    </div>
 
-  <div>  
-    <h1>Admin Dashboard</h1>  
-    <p style="color:#64748b;margin-top:5px">  
-      User ও Service সম্পূর্ণ Google Sheet থেকে Control করুন।  
-    </p>  
-  </div>  
+    <div class="modal-body">
 
-</div>  
+      <form id="editUserForm">
 
-<!-- STATS -->  
+        <input type="hidden" id="editOldUserId">
 
-<div class="stats">  
+        <div class="form-grid">
 
-  <div class="stat-card">  
-    <small>Total Users</small>  
-    <strong id="totalUsers">0</strong>  
-  </div>  
+          <div class="form-group">
+            <label>User ID</label>
+            <input id="editUserId" class="form-control" required>
+          </div>
 
-  <div class="stat-card">  
-    <small>Active Users</small>  
-    <strong id="activeUsers">0</strong>  
-  </div>  
+          <div class="form-group">
+            <label>Name</label>
+            <input id="editName" class="form-control" required>
+          </div>
 
-  <div class="stat-card">  
-    <small>Inactive Users</small>  
-    <strong id="inactiveUsers">0</strong>  
-  </div>  
+          <div class="form-group">
+            <label>Designation</label>
+            <input id="editDesignation" class="form-control" required>
+          </div>
 
-  <div class="stat-card">  
-    <small>Total Services</small>  
-    <strong id="totalServices">0</strong>  
-  </div>  
+          <div class="form-group">
+            <label>Mobile</label>
+            <input id="editMobile" class="form-control" required>
+          </div>
 
-</div>  
+          <div class="form-group">
+            <label>Email</label>
+            <input id="editEmail" class="form-control">
+          </div>
 
-<!-- USERS -->  
+          <div class="form-group">
+            <label>Office Name</label>
+            <input id="editOfficeName" class="form-control" required>
+          </div>
 
-<div class="admin-section">  
+          <div class="form-group">
+            <label>Office Type</label>
+            <input id="editOfficeType" class="form-control" required>
+          </div>
 
-  <div class="section-head">  
+          <div class="form-group full">
+            <label>Office Address</label>
+            <textarea id="editOfficeAddress" class="form-control" rows="2"></textarea>
+          </div>
 
-    <h2>User Management</h2>  
+          <div class="form-group">
+            <label>District</label>
+            <input id="editDistrict" class="form-control" required>
+          </div>
 
-  </div>  
+          <div class="form-group">
+            <label>State</label>
+            <input id="editState" class="form-control" required>
+          </div>
 
-  <div class="table-wrap">  
+          <div class="form-group">
+            <label>Pincode</label>
+            <input id="editPincode" class="form-control" required>
+          </div>
 
-    <table>  
+          <div class="form-group">
+            <label>GST</label>
+            <input id="editGST" class="form-control">
+          </div>
 
-      <thead>  
+          <div class="form-group full">
+            <label>New Password</label>
+            <input
+              id="editPassword"
+              class="form-control"
+              type="password"
+              placeholder="Change করতে চাইলে লিখুন"
+            >
+          </div>
 
-        <tr>  
-          <th>User ID</th>  
-          <th>Name</th>  
-          <th>Mobile</th>  
-          <th>Office</th>  
-          <th>District</th>  
-          <th>Status</th>  
-          <th>Actions</th>  
-        </tr>  
+        </div>
 
-      </thead>  
+        <div class="modal-footer" style="padding:20px 0 0">
 
-      <tbody id="adminUsersBody"></tbody>  
+          <button
+            type="button"
+            class="btn btn-light"
+            data-close="editUserModal"
+          >
+            Cancel
+          </button>
 
-    </table>  
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Save Changes
+          </button>
 
-  </div>  
+        </div>
 
-</div>  
+      </form>
 
-<!-- SERVICES -->  
+    </div>
 
-<div class="admin-section">  
-
-  <div class="section-head">  
-
-    <h2>Service Management</h2>  
-
-    <button  
-      class="btn btn-primary"  
-      id="addServiceBtn"  
-    >  
-      + Add Service  
-    </button>  
-
-  </div>  
-
-  <div  
-    id="adminServices"  
-    class="service-admin-grid"  
-  ></div>  
-
-</div>
-
-  </div>  </section>  <!-- ================= PROFILE MODAL ================= -->  <div class="modal" id="profileModal">    <div class="modal-box">  <div class="modal-head">  
-
-  <h2>User Profile</h2>  
-
-  <button class="close-btn" data-close="profileModal">  
-    ×  
-  </button>  
-
-</div>  
-
-<div class="modal-body">  
-
-  <div  
-    id="profileContent"  
-    class="profile-grid"  
-  ></div>  
+  </div>
 
 </div>
 
-  </div>  </div>  <!-- ================= USER DETAILS MODAL ================= -->  <div class="modal" id="userDetailsModal">    <div class="modal-box">  <div class="modal-head">  
 
-  <h2>User Details</h2>  
+<!-- ================= SERVICE MODAL ================= -->
 
-  <button class="close-btn" data-close="userDetailsModal">  
-    ×  
-  </button>  
+<div class="modal" id="serviceModal">
 
-</div>  
+  <div class="modal-box">
 
-<div class="modal-body">  
+    <div class="modal-head">
 
-  <div  
-    id="adminProfileContent"  
-    class="profile-grid"  
-  ></div>  
+      <h2>Add Service</h2>
 
-</div>
+      <button class="close-btn" data-close="serviceModal">
+        ×
+      </button>
 
-  </div>  </div>  <!-- ================= EDIT USER MODAL ================= -->  <div class="modal" id="editUserModal">    <div class="modal-box">  <div class="modal-head">  
+    </div>
 
-  <h2>Edit User</h2>  
+    <div class="modal-body">
 
-  <button class="close-btn" data-close="editUserModal">  
-    ×  
-  </button>  
+      <form id="serviceForm">
 
-</div>  
+        <div class="form-group">
+          <label>Service Name *</label>
+          <input id="serviceName" class="form-control" required>
+        </div>
 
-<div class="modal-body">  
+        <div class="form-group">
+          <label>Icon</label>
+          <input
+            id="serviceIcon"
+            class="form-control"
+            placeholder="যেমন: 🧾 / 💳 / 📄"
+          >
+        </div>
 
-  <form id="editUserForm">  
+        <div class="form-group">
+          <label>Description</label>
+          <textarea
+            id="serviceDescription"
+            class="form-control"
+            rows="3"
+          ></textarea>
+        </div>
 
-    <input type="hidden" id="editOldUserId">  
+        <div class="form-group">
+          <label>Service URL *</label>
+          <input
+            id="serviceUrl"
+            class="form-control"
+            type="url"
+            placeholder="https://example.com"
+            required
+          >
+        </div>
 
-    <div class="form-grid">  
+        <div class="modal-footer" style="padding:10px 0 0">
 
-      <div class="form-group">  
-        <label>User ID</label>  
-        <input id="editUserId" class="form-control" required>  
-      </div>  
+          <button
+            type="button"
+            class="btn btn-light"
+            data-close="serviceModal"
+          >
+            Cancel
+          </button>
 
-      <div class="form-group">  
-        <label>Name</label>  
-        <input id="editName" class="form-control" required>  
-      </div>  
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Add Service
+          </button>
 
-      <div class="form-group">  
-        <label>Designation</label>  
-        <input id="editDesignation" class="form-control" required>  
-      </div>  
+        </div>
 
-      <div class="form-group">  
-        <label>Mobile</label>  
-        <input id="editMobile" class="form-control" required>  
-      </div>  
+      </form>
 
-      <div class="form-group">  
-        <label>Email</label>  
-        <input id="editEmail" class="form-control">  
-      </div>  
+    </div>
 
-      <div class="form-group">  
-        <label>Office Name</label>  
-        <input id="editOfficeName" class="form-control" required>  
-      </div>  
-
-      <div class="form-group">  
-        <label>Office Type</label>  
-        <input id="editOfficeType" class="form-control" required>  
-      </div>  
-
-      <div class="form-group full">  
-        <label>Office Address</label>  
-        <textarea id="editOfficeAddress" class="form-control" rows="2"></textarea>  
-      </div>  
-
-      <div class="form-group">  
-        <label>District</label>  
-        <input id="editDistrict" class="form-control" required>  
-      </div>  
-
-      <div class="form-group">  
-        <label>State</label>  
-        <input id="editState" class="form-control" required>  
-      </div>  
-
-      <div class="form-group">  
-        <label>Pincode</label>  
-        <input id="editPincode" class="form-control" required>  
-      </div>  
-
-      <div class="form-group">  
-        <label>GST</label>  
-        <input id="editGST" class="form-control">  
-      </div>  
-
-      <div class="form-group full">  
-        <label>New Password</label>  
-        <input  
-          id="editPassword"  
-          class="form-control"  
-          type="password"  
-          placeholder="Change করতে চাইলে লিখুন"  
-        >  
-      </div>  
-
-    </div>  
-
-    <div class="modal-footer" style="padding:20px 0 0">  
-
-      <button  
-        type="button"  
-        class="btn btn-light"  
-        data-close="editUserModal"  
-      >  
-        Cancel  
-      </button>  
-
-      <button  
-        type="submit"  
-        class="btn btn-primary"  
-      >  
-        Save Changes  
-      </button>  
-
-    </div>  
-
-  </form>  
+  </div>
 
 </div>
 
-  </div>  </div>  <!-- ================= SERVICE MODAL ================= -->  <div class="modal" id="serviceModal">    <div class="modal-box">  <div class="modal-head">  
 
-  <h2>Add Service</h2>  
+<!-- ================= ASSIGN SERVICE MODAL ================= -->
 
-  <button class="close-btn" data-close="serviceModal">  
-    ×  
-  </button>  
+<div class="modal" id="assignModal">
 
-</div>  
+  <div class="modal-box">
 
-<div class="modal-body">  
+    <div class="modal-head">
 
-  <form id="serviceForm">  
+      <h2>Assign Services</h2>
 
-    <div class="form-group">  
-      <label>Service Name *</label>  
-      <input id="serviceName" class="form-control" required>  
-    </div>  
+      <button class="close-btn" data-close="assignModal">
+        ×
+      </button>
 
-    <div class="form-group">  
-      <label>Icon</label>  
-      <input  
-        id="serviceIcon"  
-        class="form-control"  
-        placeholder="যেমন: 🧾 / 💳 / 📄"  
-      >  
-    </div>  
+    </div>
 
-    <div class="form-group">  
-      <label>Description</label>  
-      <textarea  
-        id="serviceDescription"  
-        class="form-control"  
-        rows="3"  
-      ></textarea>  
-    </div>  
+    <div class="modal-body">
 
-    <div class="form-group">  
-      <label>Service URL *</label>  
-      <input  
-        id="serviceUrl"  
-        class="form-control"  
-        type="url"  
-        placeholder="https://example.com"  
-        required  
-      >  
-    </div>  
+      <input type="hidden" id="assignUserId">
 
-    <div class="modal-footer" style="padding:10px 0 0">  
+      <div
+        id="assignServicesList"
+      ></div>
 
-      <button  
-        type="button"  
-        class="btn btn-light"  
-        data-close="serviceModal"  
-      >  
-        Cancel  
-      </button>  
+      <div class="modal-footer" style="padding:20px 0 0">
 
-      <button  
-        type="submit"  
-        class="btn btn-primary"  
-      >  
-        Add Service  
-      </button>  
+        <button
+          type="button"
+          class="btn btn-light"
+          data-close="assignModal"
+        >
+          Cancel
+        </button>
 
-    </div>  
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="saveAssignmentsBtn"
+        >
+          Save Assignment
+        </button>
 
-  </form>  
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
-  </div>  </div>  <!-- ================= ASSIGN SERVICE MODAL ================= -->  <div class="modal" id="assignModal">    <div class="modal-box">  <div class="modal-head">  
 
-  <h2>Assign Services</h2>  
+<!-- ================= SUCCESS MODAL ================= -->
 
-  <button class="close-btn" data-close="assignModal">  
-    ×  
-  </button>  
+<div class="modal" id="successModal">
 
-</div>  
+  <div class="modal-box">
 
-<div class="modal-body">  
+    <div class="success-box">
 
-  <input type="hidden" id="assignUserId">  
+      <div class="success-icon">
+        ✓
+      </div>
 
-  <div  
-    id="assignServicesList"  
-  ></div>  
+      <h2>Registration Successful</h2>
 
-  <div class="modal-footer" style="padding:20px 0 0">  
+      <p style="color:#64748b;margin-top:7px">
+        আপনার Account তৈরি হয়েছে।
+        Admin Activation-এর পরে Login করতে পারবেন।
+      </p>
 
-    <button  
-      type="button"  
-      class="btn btn-light"  
-      data-close="assignModal"  
-    >  
-      Cancel  
-    </button>  
+      <div class="credential-box">
 
-    <button  
-      type="button"  
-      class="btn btn-primary"  
-      id="saveAssignmentsBtn"  
-    >  
-      Save Assignment  
-    </button>  
+        <div class="credential-row">
+          <span>User ID</span>
+          <strong id="successUserId"></strong>
+        </div>
 
-  </div>  
+        <div class="credential-row">
+          <span>Password</span>
+          <strong id="successPassword"></strong>
+        </div>
 
-</div>
+      </div>
 
-  </div>  </div>  <!-- ================= SUCCESS MODAL ================= -->  <div class="modal" id="successModal">    <div class="modal-box">  <div class="success-box">  
+    </div>
 
-  <div class="success-icon">  
-    ✓  
-  </div>  
+    <div class="modal-footer">
 
-  <h2>Registration Successful</h2>  
+      <button
+        class="btn btn-primary"
+        id="successCloseBtn"
+      >
+        Close
+      </button>
 
-  <p style="color:#64748b;margin-top:7px">  
-    আপনার Account তৈরি হয়েছে।  
-    Admin Activation-এর পরে Login করতে পারবেন।  
-  </p>  
+    </div>
 
-  <div class="credential-box">  
-
-    <div class="credential-row">  
-      <span>User ID</span>  
-      <strong id="successUserId"></strong>  
-    </div>  
-
-    <div class="credential-row">  
-      <span>Password</span>  
-      <strong id="successPassword"></strong>  
-    </div>  
-
-  </div>  
-
-</div>  
-
-<div class="modal-footer">  
-
-  <button  
-    class="btn btn-primary"  
-    id="successCloseBtn"  
-  >  
-    Close  
-  </button>  
+  </div>
 
 </div>
 
-  </div>  </div>  <!-- ================= IFRAME VIEWER ================= -->  <div class="viewer" id="serviceViewer">    <div class="viewer-bar">  <div  
-  class="viewer-title"  
-  id="viewerTitle"  
->  
-  Service  
-</div>  
 
-<button  
-  class="viewer-close"  
-  id="viewerClose"  
->  
-  ×  
-</button>
+<!-- ================= IFRAME VIEWER ================= -->
 
-  </div>    <iframe  
-    id="serviceFrame"  
-    title="Online Service"  
-    allow="camera; microphone; geolocation; payment"  
-  ></iframe>  </div>  <!-- ================= TOAST ================= -->  <div id="toast" class="toast"></div>  <!-- ================= LOADER ================= -->  <div id="loader" class="loader">    <div class="loader-box">  <div class="spinner"></div>  
+<div class="viewer" id="serviceViewer">
 
-<strong id="loaderText">  
-  Please wait...  
-</strong>
+  <div class="viewer-bar">
 
-  </div>  </div>  <!-- Hidden iframe for Google Apps Script POST -->  <iframe  
-  name="googleApiFrame"  
-  id="googleApiFrame"  
-  style="display:none"  ></iframe> 
+    <div
+      class="viewer-title"
+      id="viewerTitle"
+    >
+      Service
+    </div>
+
+    <button
+      class="viewer-close"
+      id="viewerClose"
+    >
+      ×
+    </button>
+
+  </div>
+
+  <iframe
+    id="serviceFrame"
+    title="Online Service"
+    allow="camera; microphone; geolocation; payment"
+  ></iframe>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast" class="toast"></div>
+
+
+<!-- ================= LOADER ================= -->
+
+<div id="loader" class="loader">
+
+  <div class="loader-box">
+
+    <div class="spinner"></div>
+
+    <strong id="loaderText">
+      Please wait...
+    </strong>
+
+  </div>
+
+</div>
+
+
+<!-- Hidden iframe for Google Apps Script POST -->
+<iframe
+  name="googleApiFrame"
+  id="googleApiFrame"
+  style="display:none"
+></iframe>
+
 
 
 
